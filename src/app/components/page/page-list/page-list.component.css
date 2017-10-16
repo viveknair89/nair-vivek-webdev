@@ -1,0 +1,39 @@
+body{
+  padding-top: 40px;
+}
+.viv-toolbar{
+  position: absolute;
+  right: 0px;
+  background-color: transparent;
+  padding: 7px;
+  border-bottom-left-radius: 10px;
+}
+
+.viv-widget .viv-content{
+  width: 100%;
+}
+.viv-white-text{
+  color: white;
+}
+
+.viv-top-buffer {
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin-top: 50px;
+  padding-top: 15px
+}
+
+.viv-footer-buffer{
+  top:0px;
+  bottom: 0px;
+  left: 0px;
+  margin-bottom: 60px;
+  padding-bottom: 15px
+}
+
+
+body.fixed_width #page, body.fixed_width #footer, body.canvas .page-canvas {
+  width: 960px;
+
+}

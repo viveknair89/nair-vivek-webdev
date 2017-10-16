@@ -1,0 +1,78 @@
+<form (ngSubmit) = "update()" #f="ngForm">
+<nav class="navbar navbar-light bg-primary navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="viv-white-text navbar-brand thick">
+        <b>Profile</b>
+      </a>
+    </p>
+
+        <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a (click)="update()" [routerLink] = "['/user', userId]" class="viv-white-text navbar-link">
+        <span class="glyphicon glyphicon-ok"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+  <div class="viv-top-buffer"></div>
+<div class="container-fluid">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text"
+             class="form-control"
+             id="username"
+             name="username"
+             [(ngModel)]="userName" />
+    </div>
+
+  <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email"
+             class="form-control"
+             id="email"
+             value={{this.user[email]}}
+             name="email"
+             [(ngModel)]="email" />
+  </div>
+  <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text"
+             class="form-control"
+             id="firstName"
+             name="firstName"
+             [(ngModel)]= "firstName" />
+  </div>
+  <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text"
+             class="form-control"
+             name="lastName"
+             id="lastName"
+             [(ngModel)] = "lastName" />
+  </div>
+</div>
+  <div>
+  <a class="btn btn-primary btn-block"
+     [routerLink]="['/user/',userId,'website']">Websites</a>
+  <a class="btn btn-danger btn-block "
+     [routerLink] = "['/login']">Logout</a>
+
+  </div>
+</form>
+<!-- Footer -->
+<nav class="navbar navbar-light bg-primary navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink] = "['/user', userId]">
+        <span class="viv-white-text glyphicon glyphicon-user"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
+
+
