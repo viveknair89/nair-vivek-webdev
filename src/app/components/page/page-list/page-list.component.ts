@@ -23,7 +23,7 @@ export class PageListComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((params: any) => {
         this.userId = params['userId'];
-        this.webId = params['webId'];
+        this.webId = params['webid'];
       }
     );
 

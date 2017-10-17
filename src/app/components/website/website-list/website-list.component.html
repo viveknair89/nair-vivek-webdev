@@ -27,17 +27,17 @@
     <li class="list-group-item" *ngFor="let website of websites">
       <div class="row">
         <div class="col-xs-9 col-sm-6 col-md-3">
-          <a [routerLink]="['/user', userId, 'website', website._id , 'page']">
-            {{website.name}}</a>
+          <a [routerLink]="['/user', userId, 'website', website['_id'] , 'page']">
+            {{website['_id']}}</a>
         </div>
         <div class="col-xs-3 hidden-xs hidden-sm col-md-3">
-        {{website.description}}
+        {{website['description']}}
         </div>
         <div class="col-xs-3 hidden-xs col-sm-3 col-md-3">
           {{user.username}}
         </div>
         <div class="col-xs-3">
-          <a class="pull-right" [routerLink]="['/user', userId, 'website', website._id]">
+          <a class="pull-right" [routerLink]="['/user', userId, 'website', website['_id']]">
             <span class="glyphicon glyphicon-edit"></span>
           </a>
         </div>

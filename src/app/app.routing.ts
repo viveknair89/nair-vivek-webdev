@@ -23,22 +23,21 @@ import {ModuleWithProviders} from '@angular/core';
 import {TestComponent} from './components/test/test.component';
 
 
-
 const APP_ROUTES: Routes = [
   {path: '', component : HomeComponent},
   {path: 'test', component: TestComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/:uid', component: ProfileComponent},
-  {path: 'user/:uid/website', component: WebsiteListComponent},
-  {path: 'user/:uid/website/new', component: WebsiteNewComponent},
-  {path: 'user/:uid/website/:wid', component: WebsiteEditComponent},
-  {path: 'user/:uid/website/:wid/page', component: PageListComponent},
-  {path: 'user/:uid/website/:wid/page/new', component: PageNewComponent},
-  {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent},
+  {path: 'user/:userId', component: ProfileComponent},
+  {path: 'user/:userId/website', component: WebsiteListComponent},
+  {path: 'user/:userId/website/new', component: WebsiteNewComponent},
+  {path: 'user/:userId/website/:webid', component: WebsiteEditComponent},
+  {path: 'user/:userId/website/:webid/page', component: PageListComponent},
+  {path: 'user/:userId/website/:webid/page/new', component: PageNewComponent},
+  {path: 'user/:userId/website/:webid/page/:pageid', component: PageEditComponent},
+  {path: 'user/:userId/website/:webid/page/:pageid/widget', component: WidgetListComponent},
+  {path: 'user/:userId/website/:webid/page/:pageid/widget/new', component: WidgetChooserComponent},
+  {path: 'user/:userId/website/:webid/page/:pageid/widget/:wgid', component: WidgetEditComponent},
   {path: 'widget-header', component: WidgetHeaderComponent},
   {path: 'widget-image', component: WidgetImageComponent},
   {path: 'widget-youtube', component: WidgetYoutubeComponent}

@@ -29,6 +29,10 @@ export class PageEditComponent implements OnInit {
         this.userId = params['userId'];
       }
     );
+    this.pages = this.pageService.findPageByWebsiteId(this.webid);
+    this.page = this.pageService.findPageById(this.pageid);
+    this.name = this.page.name;
+    this.description = this.page.description;
   }
   update() {
     this.user = this.userService.findUserById(this.userId);
@@ -43,7 +47,7 @@ export class PageEditComponent implements OnInit {
   }
 
   delete() {
-    this.pageService.deleteWebsite(this.pageid);
+    this.pageService.deletePage(this.pageid);
     this.router.navigate(['user/' + this.userId, 'website', this.webid, 'page']);
   }
 }

@@ -19,7 +19,7 @@ export class WidgetService {
     { '_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'},
     { '_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
     { '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%',
-      'url': 'https://youtu.be/AM2Ivdi9c4E' },
+      'url': 'https://www.youtube.com/embed/vbOO9Wq6rCA' },
     { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
 
   ];
@@ -33,25 +33,24 @@ export class WidgetService {
   };
 
   createWidget(pageId: String, widget: any) {
-    widget._id = Math.random();
+    widget._id = Math.random() * 10000;
     widget.pageId = pageId;
     this.widgets.push(widget);
     return widget;
   }
 
-  findWidgetsByPageId(pageId: string) {
-    const resultset = [];
+  findWidgetsByPageId(pageId: String) {
+    // const resultset= [{}];
+    const resultset=[];
     for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === pageId) {
-        let ws: any;
-        ws = this.widgets[x];
-        resultset.push(ws);
+      if (this.widgets[x].pageId === pageId) {
+        resultset.push(this.widgets[x]);
       }
     }
     return resultset;
   }
 
-  findWidgetById(widgetId: string) {
+  findWidgetById(widgetId: String) {
     for (let x = 0; x < this.widgets.length; x++) {
       if (this.widgets[x]._id === widgetId) {
         return this.widgets[x];
@@ -67,7 +66,7 @@ export class WidgetService {
 
   deleteWidget(widgetId: String) {
     for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {delete this.widgets[x]; }
+      if (this.widgets[x]._id === widgetId) {this.widgets.splice(x, 1); }
     }
   }
 }

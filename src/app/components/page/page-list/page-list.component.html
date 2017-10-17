@@ -25,16 +25,16 @@
     <li class="list-group-item" *ngFor="let page of pages">
       <div class="row">
         <div class="col-xs-9 col-sm-6 col-md-3">
-          <a [routerLink]="['/user', userId, 'website', webId, 'page', page._id, 'widget']">{{page.name}} </a>
+          <a [routerLink]="['/user', userId, 'website', webId, 'page', page['_id'], 'widget']">{{page['name']}} </a>
         </div>
         <div class="col-xs-3 hidden-xs hidden-sm col-md-3">
-          {{page.description}}
+          {{page['description']}}
         </div>
         <div class="col-xs-3 hidden-xs col-sm-3 col-md-3">
           {{user.username}}
         </div>
         <div class="col-xs-3">
-          <a class="pull-right" [routerLink]="['/user', userId, 'website', webId, 'page', page._id]">
+          <a class="pull-right" [routerLink]="['/user', userId, 'website', webId, 'page', page['_id']]">
             <span class="glyphicon glyphicon-edit"></span>
           </a>
         </div>

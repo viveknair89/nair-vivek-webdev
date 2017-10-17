@@ -1,10 +1,11 @@
+<form (ngSubmit) = "update()" #f="ngForm">
 <nav class="bg-primary navbar navbar-fixed-top">
   <div class="container-fluid">
     <!--<div class="row">-->
     <div class="col-sm-3 col-xs-1">
       <!--heading on the nav bar-->
       <p class="navbar-text pull-left">
-        <a class="navbar-link" href="page-list.html">
+        <a class="navbar-link" [routerLink]="['/user', userId, 'website', webid, 'page']">
           <span class="viv-white-text glyphicon glyphicon-menu-left"></span>
         </a>
       </p>
@@ -14,7 +15,7 @@
       </p>
       <!--plus mark-->
       <p class="col-sm-1 hidden-xs hidden-sm navbar-text pull-right">
-        <a href="page-new.html" class="navbar-link">
+        <a [routerLink]="['/user', userId, 'website', webid, 'page', 'new']" class="navbar-link">
           <span class="viv-white-text glyphicon glyphicon-plus"></span>
         </a>
       </p>
@@ -28,7 +29,7 @@
       </p>
       <!--tick mark-->
       <p class="navbar-text pull-right">
-        <a href="page-list.html" class="navbar-link">
+        <a [routerLink]="['/user', userId, 'website', webid, 'page']" class="navbar-link">
           <span class="viv-white-text glyphicon glyphicon-ok"></span>
         </a>
       </p>
@@ -40,27 +41,9 @@
   <div class="row">
     <div class="col-sm-3 hidden-xs hidden-sm">
       <ul class="list-group">
-        <li class="list-group-item">
-          <a href="../../views/widget/widget-list.html">Wikipedia</a>
-          <a href="page-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-edit"></span>
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="../../views/widget/widget-list.html">Youtube</a>
-          <a href="page-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-edit"></span>
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="../../views/widget/widget-list.html">Gizmodo</a>
-          <a href="page-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-edit"></span>
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="../../views/widget/widget-list.html">Facebook</a>
-          <a href="page-edit.html" class="pull-right">
+        <li class="list-group-item" *ngFor="let page of pages">
+          <a [routerLink]="['/user', userId, 'website', webid, 'page', page['_id'], 'widget']">{{page['name']}}</a>
+          <a [routerLink]="['/user', userId, 'website', webid, 'page', page['_id']]" class="pull-right">
             <span class="glyphicon glyphicon-edit"></span>
           </a>
         </li>
@@ -69,18 +52,18 @@
     <div class="col-sm-9">
       <form>
         <div class="form-group">
-          <label>Page Name</label>
-          <input type="text" class="form-control">
+          <label for="name">Page Name</label>
+          <input type="text" id="name" name="name" [(ngModel)]="name" class="form-control">
         </div>
       </form>
       <form>
         <div class="form-group">
-          <label>Page Description</label>
-          <textarea class="form-control"></textarea>
+          <label for="description">Page Description</label>
+          <textarea class="form-control" id="description" [(ngModel)]="description" name="description"></textarea>
         </div>
       </form>
       <a class="btn btn-danger btn-block"
-         href="page-list.html">Delete</a>
+         (click)="delete()">Delete</a>
     </div>
   </div>
 </div>
@@ -88,10 +71,11 @@
 <nav class="navbar navbar-light bg-primary navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="../../views/user/profile.html">
+      <a [routerLink]="['/user', userId]">
         <span class="viv-white-text glyphicon glyphicon-user"></span>
       </a>
     </p>
 
   </div>
 </nav>
+</form>

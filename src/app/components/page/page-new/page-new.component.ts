@@ -23,7 +23,7 @@ export class PageNewComponent implements OnInit {
               private pageService: PageService, private router: Router) { }
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
-        this.webId = params['webId'];
+        this.webId = params['webid'];
         this.userId = params['userId'];
       }
     );
@@ -33,15 +33,11 @@ export class PageNewComponent implements OnInit {
 
   create() {
     this.user = this.userService.findUserById(this.userId);
-    if (this.pageNewForm.value.name.length > 0) {
       this.name = this.pageNewForm.value.name;
-    }
-    if (this.pageNewForm.value.desciption.length > 0) {
-      this.description = this.pageNewForm.value.description ;
-    }
+      this.description = this.pageNewForm.value.description;
      const temp = {name: this.name, description: this.description};
-    this.page = this.pageService.createPage(this.userId, temp);
-    this.router.navigate(['user/' + this.userId, 'website', this.webId, 'page']);
+    this.page = this.pageService.createPage(this.webId, temp);
+    // this.router.navigate(['user/' + this.userId, 'website', this.webId, 'page']);
   }
 
 }

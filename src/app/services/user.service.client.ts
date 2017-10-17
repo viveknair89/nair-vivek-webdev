@@ -32,7 +32,7 @@ export class UserService {
   };
 
   createUser(user: any) {
-    user._id = Math.random();
+    user._id = Math.random() * 10000;
     this.users.push(user);
     return user;
   }
@@ -57,13 +57,12 @@ export class UserService {
   }
   updateUser(userId: String, user: any) {
     for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {  this.users[x] = user; return this.users[x];
-      }
+      if (this.users[x]._id === userId) {  this.users[x] = user; }
     }
   }
   deleteUser(userId: String) {
     for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {  delete this.users[x]; }
+      if (this.users[x]._id === userId) { this.users.splice(x, 1); }
     }
   }
 }

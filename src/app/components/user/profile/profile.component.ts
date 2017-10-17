@@ -29,10 +29,13 @@ export class ProfileComponent implements OnInit {
           this.userId = params['userId'];
         }
     );
-
+    this.user = this.userService.findUserById(this.userId);
+    this.userName = this.user['username'];
+    this.firstName = this.user['firstName'];
+    this.lastName = this.user['lastName'];
+    this.email = this.user['email'];
   }
   update() {
-    this.user = this.userService.findUserById(this.userId);
     if (this.profileForm.value.username.length > 0) {
       this.user['username'] = this.profileForm.value.username;
     }

@@ -29,6 +29,11 @@ export class WebsiteEditComponent implements OnInit {
       this.userId = params['userId'];
       }
     );
+    this.user = this.userService.findUserById(this.userId);
+    this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    this.website = this.websiteService.findWebsiteById(this.webid);
+    this.name = this.website.name;
+    this.description = this.website.description;
   }
   update() {
     this.user = this.userService.findUserById(this.userId);
