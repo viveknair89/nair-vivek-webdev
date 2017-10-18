@@ -30,7 +30,7 @@
           </p>
           <!--tick mark-->
           <p class="navbar-text pull-right">
-            <a type="submit" [routerLink]="['/user', userId, 'website', webId, 'page']" class="navbar-link">
+            <a type="submit" (click)="create()" [routerLink]="['/user', userId, 'website', webId, 'page']" class="navbar-link">
               <span class="viv-white-text glyphicon glyphicon-ok"></span>
             </a>
           </p>
