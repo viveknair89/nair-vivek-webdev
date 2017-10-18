@@ -41,7 +41,7 @@ export class WidgetService {
 
   findWidgetsByPageId(pageId: String) {
     // const resultset= [{}];
-    const resultset=[];
+    const resultset = [];
     for (let x = 0; x < this.widgets.length; x++) {
       if (this.widgets[x].pageId === pageId) {
         resultset.push(this.widgets[x]);
