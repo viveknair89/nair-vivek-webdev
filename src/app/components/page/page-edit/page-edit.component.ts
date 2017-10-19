@@ -42,8 +42,9 @@ export class PageEditComponent implements OnInit {
     if (this.pageEditForm.value.description.length > 0) {
       this.user['description'] = this.pageEditForm.value.description ;
     }
-    this.pageService.updatePage( this.pageid, this.page);
-    this.router.navigate(['user/' + this.userId, 'website', this.webid, 'page']);
+    const tempPage = {name: this.page['name'], description: this.page['description'] };
+    this.pageService.updatePage( this.pageid, tempPage);
+    // this.router.navigate(['user/' + this.userId, 'website', this.webid, 'page']);
   }
 
   delete() {

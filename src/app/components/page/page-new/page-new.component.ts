@@ -35,7 +35,6 @@ export class PageNewComponent implements OnInit {
     this.user = this.userService.findUserById(this.userId);
       this.name = this.pageNewForm.value.name;
       this.description = this.pageNewForm.value.description;
-      alert(this.name);
      const temp = {name: this.name, description: this.description};
     this.page = this.pageService.createPage(this.webId, temp);
     // this.router.navigate(['user/' + this.userId, 'website', this.webId, 'page']);

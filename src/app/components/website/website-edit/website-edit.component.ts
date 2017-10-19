@@ -31,7 +31,7 @@ export class WebsiteEditComponent implements OnInit {
     );
     this.user = this.userService.findUserById(this.userId);
     this.websites = this.websiteService.findWebsitesByUser(this.userId);
-    this.website = this.websiteService.findWebsiteById(this.webid);
+      this.website = this.websiteService.findWebsiteById(this.webid);
     this.name = this.website.name;
     this.description = this.website.description;
   }
@@ -43,8 +43,10 @@ export class WebsiteEditComponent implements OnInit {
     if (this.websiteEditForm.value.description.length > 0) {
       this.user['description'] = this.websiteEditForm.value.description ;
     }
-    this.websiteService.updateWebsite( this.webid, this.website);
-    this.router.navigate(['user/' + this.userId, 'website']);
+    alert(this.user['description']);
+    const tempWebsite = {name: this.user['name'], description: this.user['description']};
+    this.websiteService.updateWebsite( this.webid, tempWebsite);
+    // this.router.navigate(['user/' + this.userId, 'website']);
   }
 
   delete() {

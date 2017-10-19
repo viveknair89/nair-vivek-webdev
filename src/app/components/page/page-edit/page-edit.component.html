@@ -29,7 +29,7 @@
       </p>
       <!--tick mark-->
       <p class="navbar-text pull-right">
-        <a [routerLink]="['/user', userId, 'website', webid, 'page']" class="navbar-link">
+        <a type="submit" (click)="update()" [routerLink]="['/user', userId, 'website', webid, 'page']" class="navbar-link">
           <span class="viv-white-text glyphicon glyphicon-ok"></span>
         </a>
       </p>
@@ -50,18 +50,14 @@
       </ul>
     </div>
     <div class="col-sm-9">
-      <form>
         <div class="form-group">
           <label for="name">Page Name</label>
           <input type="text" id="name" name="name" [(ngModel)]="name" class="form-control">
         </div>
-      </form>
-      <form>
         <div class="form-group">
           <label for="description">Page Description</label>
           <textarea class="form-control" id="description" [(ngModel)]="description" name="description"></textarea>
         </div>
-      </form>
       <a class="btn btn-danger btn-block"
          (click)="delete()">Delete</a>
     </div>

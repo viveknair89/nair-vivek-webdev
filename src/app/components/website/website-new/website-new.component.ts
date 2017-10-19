@@ -34,9 +34,9 @@ export class WebsiteNewComponent implements OnInit {
     this.user = this.userService.findUserById(this.userId);
       this.user['name'] = this.websiteNewForm.value.name;
       this.user['description'] = this.websiteNewForm.value.description ;
-    const temp = {name: this.name, description: this.description};
+    const temp = {name: this.user['name'], description: this.user['description']};
     this.website = this.websiteService.createWebsite(this.userId, temp);
-    this.router.navigate(['user/' + this.userId, 'website']);
+    // this.router.navigate(['user/' + this.userId, 'website']);
   }
 
 }
