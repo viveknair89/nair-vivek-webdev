@@ -26,17 +26,25 @@ export class WebsiteNewComponent implements OnInit {
         this.userId = params['userId'];
       }
     );
-    this.user = this.userService.findUserById(this.userId);
-    this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    this.websiteService.findWebsitesByUser(this.userId)
+      .subscribe(
+        (websites: any) => {
+          this.websites = websites;
+        }
+      );
   }
+    // this.user = this.userService.findUserById(this.userId);
+    // this.websites = this.websiteService.findWebsitesByUser(this.userId);
 
   create() {
-    this.user = this.userService.findUserById(this.userId);
-      this.user['name'] = this.websiteNewForm.value.name;
-      this.user['description'] = this.websiteNewForm.value.description ;
-    const temp = {name: this.user['name'], description: this.user['description']};
-    this.website = this.websiteService.createWebsite(this.userId, temp);
-    // this.router.navigate(['user/' + this.userId, 'website']);
+    // this.user = this.userService.findUserById(this.userId);
+    const temp = {name: this.websiteNewForm.value.name, description: this.websiteNewForm.value.description};
+    this.websiteService.createWebsite(this.userId, temp)
+      .subscribe(
+        (new_website: any) => {
+          this.router.navigate(['user/' + this.userId, 'website']);
+        }
+      );
   }
 
 }

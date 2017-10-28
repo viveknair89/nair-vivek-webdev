@@ -14,10 +14,12 @@ export class WidgetImageComponent implements OnInit {
   width: string;
   userId: string;
   webid: string;
+  widgets = [{}];
   pageid: string;
   wgid: string;
 
-  constructor(private widgetService: WidgetService, private activatedRoutes: ActivatedRoute) {  }
+  constructor(private widgetService: WidgetService, private activatedRoutes: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.activatedRoutes.params.subscribe(params => {
@@ -25,9 +27,14 @@ export class WidgetImageComponent implements OnInit {
       this.webid = params['webid'];
       this.pageid = params['pageid'];
       this.wgid = params['wgid'];
-      this.widget = this.widgetService.findWidgetById(this.wgid);
-      this.width = this.widget['width'];
-      this.url = this.widget['url'];
+      this.widgetService.findWidgetById(this.wgid)
+        .subscribe(
+          (widget: any) => {
+            this.widget = widget;
+            this.width = this.widget['width'];
+            this.url = this.widget['url'];
+          }
+        );
     });
   }
 
@@ -35,11 +42,19 @@ export class WidgetImageComponent implements OnInit {
     this.widget['widgetType'] = 'IMAGE';
     this.widget['url'] = this.url;
     this.widget['width'] = this.width;
-    this.widgetService.updateWidget(this.wgid, this.widget);
+    this.widgetService.updateWidget(this.wgid, this.widget)
+      .subscribe(
+        (widgets: any) => {
+          this.widgets = widgets;
+        }
+      );
   }
 
   delete() {
-    this.widgetService.deleteWidget(this.wgid);
+    this.widgetService.deleteWidget(this.wgid).subscribe(
+      (widgets: any) => {
+        this.widgets = widgets;
+      }
+    );
   }
-
 }

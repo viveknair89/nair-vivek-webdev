@@ -13,15 +13,18 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-
-// Point static path to dist -- For building -- REMOVE
-app.use(express.static(path.join(__dirname, 'dist')));
-
-
-
-// CORS
+const port = process.env.PORT || '3100';
+app.set('port', port);
+// // Create HTTP server
+const server = http.createServer(app);
+// server.listen(port);
+//
+// // Point static path to dist -- For building -- REMOVE
+// app.use(express.static(path.join(__dirname, 'dist')));
+//
+//
+//
+// // CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -29,16 +32,19 @@ app.use(function(req, res, next) {
   next();
 });
 
+require("./assignment/app.js")(app);
 
-
-
-const port = process.env.PORT || '3100';
-app.set('port', port);
-
-
-// Create HTTP server
-const server = http.createServer(app);
-
+//
+//
+//
+//
+// const port = process.env.PORT || '3100';
+// app.set('port', port);
+//
+//
+// // Create HTTP server
+// const server = http.createServer(app);
+//
 var serverSide = require("./server/test-mongodb/app");
 serverSide(app);
 
@@ -48,8 +54,12 @@ serverSide(app);
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+app.listen(port);
+//
+//
+// server.listen( port , () => console.log('Running')) ;
 
 
-server.listen( port , () => console.log('Running'));
+
 
 

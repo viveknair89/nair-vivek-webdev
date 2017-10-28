@@ -29,29 +29,44 @@ export class ProfileComponent implements OnInit {
           this.userId = params['userId'];
         }
     );
-    this.user = this.userService.findUserById(this.userId);
-    this.userName = this.user['username'];
-    this.firstName = this.user['firstName'];
-    this.lastName = this.user['lastName'];
-    this.email = this.user['email'];
+    this.userService.findUserById(this.userId)
+      .subscribe((user: any) => {
+      this.user = user;
+      this.userName = this.user['username'];
+      this.firstName = this.user['firstName'];
+      this.lastName = this.user['lastName'];
+      this.email = this.user['email'];
+    },
+        (error: any) => {
+            this.errorFlag = true;
+        }
+    );
+
   }
   update() {
-    if (this.profileForm.value.username.length > 0) {
+    // if (this.profileForm.value.username.length > 0) {
       this.user['username'] = this.profileForm.value.username;
-    }
-    if (this.profileForm.value.email.length > 0) {
+    // }
+    // if (this.profileForm.value.email.length > 0) {
       this.user['email'] = this.profileForm.value.email;
-    }
-    if (this.profileForm.value.firstName.length > 0) {
+    // }
+    // if (this.profileForm.value.firstName.length > 0) {
       this.user['firstName'] = this.profileForm.value.firstName;
-    }
-    if (this.profileForm.value.lastName.length > 0) {
+    // }
+    // if (this.profileForm.value.lastName.length > 0) {
       this.user['lastName'] = this.profileForm.value.lastName;
-    }
-    if (this.profileForm.value.email.length > 0) {
+    // }
+    // if (this.profileForm.value.email.length > 0) {
       this.user['email'] = this.profileForm.value.email;
-    }
-    this.userService.updateUser( this.user['userId'], this.user);
-    this.router.navigate(['user/' + this.userId]);
+    // }
+    this.userService.updateUser( this.userId, this.user)
+      .subscribe(
+        (user: any) => {
+          this.errorFlag = false;
+          this.userName = this.user['username'];
+          this.firstName = this.user['firstName'];
+          this.lastName = this.user['lastName'];
+          this.email = this.user['email'];
+        });
   }
 }

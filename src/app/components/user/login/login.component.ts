@@ -23,16 +23,21 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(username: String, password: String) {
+  login() {
     // fetching data from loginform
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
     this.errorFlag = this.loginForm.value.errorFlag;
-    const user = this.userService.findUserByCredentials(this.username, this.password);
-    if (user) {
-      this.router.navigate(['/user/' + user._id]);
-    } else { this.errorFlag = true; }
+    this.userService.findUserByCredentials(this.username, this.password)
+      .subscribe((user: any) => {
+        if (user) {
+          this.router.navigate(['/user/' + user._id]);
+        } else {
+          this.errorFlag = true;
+        }
+      });
   }
+
 
   register() { this.router.navigate(['/register']);
   }

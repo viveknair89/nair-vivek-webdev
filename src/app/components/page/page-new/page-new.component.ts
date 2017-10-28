@@ -27,17 +27,26 @@ export class PageNewComponent implements OnInit {
         this.userId = params['userId'];
       }
     );
-    this.user = this.userService.findUserById(this.userId);
-    this.pages = this.pageService.findPageByWebsiteId(this.webId);
+    // this.user = this.userService.findUserById(this.userId);
+    this.pageService.findPageByWebsiteId(this.webId)
+      .subscribe(
+        (pages: any) => {
+          this.pages = pages;
+        }
+      );
   }
 
   create() {
-    this.user = this.userService.findUserById(this.userId);
+    // this.user = this.userService.findUserById(this.userId);
       this.name = this.pageNewForm.value.name;
       this.description = this.pageNewForm.value.description;
-     const temp = {name: this.name, description: this.description};
-    this.page = this.pageService.createPage(this.webId, temp);
-    // this.router.navigate(['user/' + this.userId, 'website', this.webId, 'page']);
+      const temp = {name: this.name, description: this.description};
+      this.page = this.pageService.createPage(this.webId, temp)
+      .subscribe(
+        (page: any) => {
+          this.router.navigate(['user/' + this.userId, 'website', this.webId, 'page']);
+        }
+      );
   }
 
 }

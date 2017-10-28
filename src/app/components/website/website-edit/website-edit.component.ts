@@ -29,28 +29,53 @@ export class WebsiteEditComponent implements OnInit {
       this.userId = params['userId'];
       }
     );
-    this.user = this.userService.findUserById(this.userId);
-    this.websites = this.websiteService.findWebsitesByUser(this.userId);
-      this.website = this.websiteService.findWebsiteById(this.webid);
-    this.name = this.website.name;
-    this.description = this.website.description;
+    this.websiteService.findWebsiteById(this.webid).subscribe( (website: any) => {
+      this.name = website.name;
+      this.description = website.description;
+      }
+    );
+    this.websiteService.findWebsitesByUser(this.userId).subscribe( (websites: any) => {
+        this.websites = websites;
+      }
+    );
+
   }
+    // this.user = this.userService.findUserById(this.userId);
+    // this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    //   this.website = this.websiteService.findWebsiteById(this.webid);
+    // this.name = this.website.name;
+    // this.description = this.website.description;
+
   update() {
-    this.user = this.userService.findUserById(this.userId);
-    if (this.websiteEditForm.value.name.length > 0) {
-      this.user['name'] = this.websiteEditForm.value.name;
-    }
-    if (this.websiteEditForm.value.description.length > 0) {
-      this.user['description'] = this.websiteEditForm.value.description ;
-    }
-    alert(this.user['description']);
-    const tempWebsite = {name: this.user['name'], description: this.user['description']};
-    this.websiteService.updateWebsite( this.webid, tempWebsite);
+    // this.user = this.userService.findUserById(this.userId);
+    const edited = { '_id': this.webid,
+      'name': this.websiteEditForm.value.name,
+      'developerId': this.userId,
+      'description': this.websiteEditForm.value.description };
+    // if (this.websiteEditForm.value.name.length > 0) {
+    //   this.website['name'] = this.websiteEditForm.value.name;
+    // }
+    // if (this.websiteEditForm.value.description.length > 0) {
+    //   this.website['description'] = this.websiteEditForm.value.description;
+    // }
+    this.websiteService.updateWebsite(this.webid, edited)
+      .subscribe(
+        (sites: any) => {
+          this.websites = sites;
+          this.router.navigate(['user/' + this.userId, 'website']);
+        }
+      );
+    // const tempWebsite = {name: this.user['name'], description: this.user['description']};
+    // this.websiteService.updateWebsite( this.webid, tempWebsite);
     // this.router.navigate(['user/' + this.userId, 'website']);
   }
 
   delete() {
-    this.websiteService.deleteWebsite(this.webid);
-    this.router.navigate(['user/' + this.userId, 'website']);
+    this.websiteService.deleteWebsite(this.webid)
+      .subscribe(
+        (website: any) => {
+      this.router.navigate(['user/' + this.userId, 'website']);
+        }
+      );
   }
 }

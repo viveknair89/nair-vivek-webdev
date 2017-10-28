@@ -12,6 +12,7 @@ export class WidgetYoutubeComponent implements OnInit {
   widget = {};
   url: String;
   width: String;
+  widgets = [{}];
   userId: String;
   webid: String;
   pageid: String;
@@ -26,10 +27,14 @@ export class WidgetYoutubeComponent implements OnInit {
       this.webid = params['webid'];
       this.pageid = params['pageid'];
       this.wgid = params['wgid'];
-      this.widget = this.widgetService.findWidgetById(this.wgid);
-      this.url = this.widget['url'];
-      this.width = this.widget['width'];
-
+      this.widget = this.widgetService.findWidgetById(this.wgid)
+        .subscribe(
+          (widget: any) => {
+            this.widget = widget;
+            this.width = this.widget['width'];
+            this.url = this.widget['url'];
+          }
+        );
     });
   }
 
@@ -37,11 +42,20 @@ export class WidgetYoutubeComponent implements OnInit {
     this.widget['widgetType'] = 'YOUTUBE';
     this.widget['url'] = this.url;
     this.widget['width'] = this.width;
-    this.widgetService.updateWidget(this.wgid, this.widget);
+    this.widgetService.updateWidget(this.wgid, this.widget).subscribe(
+      (widgets: any) => {
+        this.widgets = widgets;
+      }
+    );
   }
 
   delete() {
-    this.widgetService.deleteWidget(this.wgid);
+    this.widgetService.deleteWidget(this.wgid).subscribe(
+      (widgets: any) => {
+        this.widgets = widgets;
+      }
+    );
   }
+
 }
 

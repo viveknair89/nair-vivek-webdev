@@ -3,24 +3,25 @@ import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import {map} from 'rxjs/operator/map';
 
 // injecting service into module
 @Injectable()
 
 export class UserService {
 
-  constructor() { }
+  constructor(private _http: Http) { }
 
-  users = [
-    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder',
-      email: 'alice@wonderland.com' },
-    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley',
-      email: 'bob@marley.com' },
-    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia',
-      email: 'charly@garcia.com' },
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi',
-      email: 'jannunzi@annunzi.com' }
-  ];
+  // users = [
+  //   {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder',
+  //     email: 'alice@wonderland.com' },
+  //   {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley',
+  //     email: 'bob@marley.com' },
+  //   {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia',
+  //     email: 'charly@garcia.com' },
+  //   {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi',
+  //     email: 'jannunzi@annunzi.com' }
+  // ];
 
   api = {
     'createUser'   : this.createUser,
@@ -30,40 +31,68 @@ export class UserService {
     'deleteUser' : this.deleteUser,
     'findUserByCredentials' : this.findUserByCredentials
   };
+  baseUrl = environment.baseUrl;
 
   createUser(user: any) {
-    user._id = Math.random() * 10000;
-    this.users.push(user);
-    return user;
+    user._id = Math.floor(Math.random() * 100).toString();
+    return this._http.post(this.baseUrl + '/api/user/', user)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
 
   findUserById(userId: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {  return this.users[x]; }
-    }
+    return this._http.get(this.baseUrl + '/api/user/' + userId)
+      .map(
+      (res: Response) => {
+        const data = res.json();
+        return data;
+      }
+    );
+  }
+
+  findUserByCredentials(username: String, password: String) {
+    return this._http.get(this.baseUrl + '/api/user?username=' + username + '&password=' + password)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
 
   findUserByUsername(username: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x].username === username) { return this.users[x]; }
-    }
+    return this._http.get(this.baseUrl + '/api/user?username=' + username)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
 
-  findUserByCredentials(username, password) {
-    for (let x = 0; x < this.users.length; x++) {
-      if ( this.users[x].username === username && this.users[x].password === password) {
-        return this.users[x]; }
-    }
+
+  updateUser(userId, user) {
+    return this._http.put(this.baseUrl + '/api/user/' + userId, user)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
-  updateUser(userId: String, user: any) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {  this.users[x] = user; }
-    }
-  }
+
   deleteUser(userId: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) { this.users.splice(x, 1); }
-    }
+    return this._http.delete(this.baseUrl + '/api/user/' + userId)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
 }
 

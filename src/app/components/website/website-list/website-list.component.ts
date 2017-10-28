@@ -13,6 +13,7 @@ export class WebsiteListComponent implements OnInit {
   userId: String;
   websites = [{}];
   user: any;
+  username: String;
 
   constructor(private _websiteService: WebsiteService, private userService: UserService,
               private activatedRoute: ActivatedRoute) { }
@@ -24,7 +25,14 @@ export class WebsiteListComponent implements OnInit {
         }
       );
 
-    this.websites = this._websiteService.findWebsitesByUser(this.userId);
     this.user = this.userService.findUserById(this.userId);
+
+
+    this._websiteService.findWebsitesByUser(this.userId)
+      .subscribe(
+        (websites: any) => {
+          this.websites = websites;
+        }
+      );
   }
 }

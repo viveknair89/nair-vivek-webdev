@@ -9,13 +9,9 @@ import { Router } from '@angular/router';
 
 export class PageService {
 
-  constructor() { }
+  constructor(private _http: Http) { }
 
-  pages = [
-    { '_id': '321', 'name': 'Post 1',  'websiteId': '890', 'description': 'Lorem' },
-    { '_id': '432', 'name': 'Post 2',  'websiteId': '456', 'description': 'Lorem' },
-    { '_id': '543', 'name': 'Post 3',  'websiteId': '456', 'description': 'Lorem' }
-  ];
+  baseUrl = environment.baseUrl;
 
   api = {
     'createPage'   : this.createPage,
@@ -26,41 +22,63 @@ export class PageService {
   };
 
   createPage(websiteId: String, page: any) {
-    page._id = Math.random() * 10000;
+    page._id = Math.floor(Math.random() * 100).toString();
     page.websiteId = websiteId;
-    this.pages.push(page);
-    return page;
+    return this._http.post(this.baseUrl + '/api/website/' + websiteId + '/page', page)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
 
   findPageByWebsiteId(websiteId: String) {
-    const resultset = [];
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x].websiteId === websiteId) {
-        // let ws: any;
-        // ws = this.pages[x];
-        resultset.push(this.pages[x]);
-      }
-    }
-    return resultset;
+    return this._http.get(this.baseUrl + '/api/website/' + websiteId + '/page')
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
+    // const resultset = [];
+    // for (let x = 0; x < this.pages.length; x++) {
+    //   if (this.pages[x].websiteId === websiteId) {
+    //     // let ws: any;
+    //     // ws = this.pages[x];
+    //     resultset.push(this.pages[x]);
+    //   }
+    // }
+    // return resultset;
 
   findPageById(pageId: String) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) {
-        return this.pages[x];
-      }
-    }
+    return this._http.get(this.baseUrl + '/api/page' + pageId)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
 
   updatePage(pageId: String, page: any) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) {  this.pages[x] = page; }
-    }
+    return this._http.put(this.baseUrl + '/api/page/' + pageId , page)
+    .map(
+      (res: Response) => {
+        const data = res.json();
+        return data;
+      }
+    );
   }
 
   deletePage(pageId: String) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) { this.pages.splice( x, 1 ); }
-    }
+    return this._http.delete(this.baseUrl + '/api/page' + pageId)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
   }
 }

@@ -29,26 +29,38 @@ export class PageEditComponent implements OnInit {
         this.userId = params['userId'];
       }
     );
-    this.pages = this.pageService.findPageByWebsiteId(this.webid);
-    this.page = this.pageService.findPageById(this.pageid);
-    this.name = this.page.name;
-    this.description = this.page.description;
+    this.pageService.findPageById(this.pageid).subscribe((page: any) => {
+        this.name = page.name;
+        this.description = page.description();
+      }
+    );
+    // this.pages = this.pageService.findPageByWebsiteId(this.webid);
+    // this.page = this.pageService.findPageById(this.pageid);
+    // this.name = this.page.name;
+    // this.description = this.page.description;
+    this.pageService.findPageByWebsiteId(this.webid).subscribe((pages: any) => {
+        this.pages = pages;
+      }
+    );
   }
   update() {
-    this.user = this.userService.findUserById(this.userId);
-    if (this.pageEditForm.value.name.length > 0) {
-      this.page['name'] = this.pageEditForm.value.name;
-    }
-    if (this.pageEditForm.value.description.length > 0) {
-      this.user['description'] = this.pageEditForm.value.description ;
-    }
-    const tempPage = {name: this.page['name'], description: this.page['description'] };
-    this.pageService.updatePage( this.pageid, tempPage);
-    // this.router.navigate(['user/' + this.userId, 'website', this.webid, 'page']);
+    // this.user = this.userService.findUserById(this.userId);
+    const tempPage = {'_id': this.pageid, name: this.pageEditForm.value.name,
+      description: this.pageEditForm.value.description, 'websiteId': this.webid };
+    this.pageService.updatePage( this.pageid, tempPage)
+      .subscribe(
+        (page: any) => {
+          this.router.navigate(['user/' + this.userId, 'website', this.webid, 'page']);
+        }
+      );
   }
 
   delete() {
-    this.pageService.deletePage(this.pageid);
-    this.router.navigate(['user/' + this.userId, 'website', this.webid, 'page']);
+    this.pageService.deletePage(this.pageid)
+      .subscribe(
+        (page: any) => {
+          this.router.navigate(['user/' + this.userId, 'website', this.webid, 'page']);
+        }
+      );
   }
 }

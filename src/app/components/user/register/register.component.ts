@@ -13,6 +13,9 @@ export class RegisterComponent implements OnInit {
   // Properties
   username: String;
   password: String;
+  firstName: String;
+  lastName: String;
+  email: String;
   verify_password: String;
   errorMsg: String;
   errorFlag: boolean;
@@ -23,23 +26,36 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
   }
-  register(username: String, password: String, verify_password: String) {
+
+  register() {
     this.username = this.registerForm.value.username;
     this.password = this.registerForm.value.password;
+    this.firstName = this.registerForm.value.firstName;
+    this.lastName = this.registerForm.value.lastName;
+    this.email = this.registerForm.value.email;
     this.verify_password = this.registerForm.value.verify_password;
     this.errorFlag = this.registerForm.value.errorFlag;
-    if (this.password === this.verify_password) {
-      const user = this.userService.findUserByUsername(this.username);
-      if ( user ) { this.errorFlag = true; }
-      const newuser = this.userService.createUser(this);
-      if (newuser) {
-        this.router.navigate(['/user/' + user._id]);
-      } else { this.errorFlag = true;
-      this.errorMsg = 'Cannot register User'; }
-    } else { this.errorFlag = true;
-    this.errorMsg = 'Passwords Do Not Match'; }
-  }
-  cancel() { this.router.navigate(['/login']);
-  }
 
+    const user = {
+      username: this.username,
+      password: this.password,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email
+    };
+
+    this.userService.createUser(user)
+      .subscribe((user: any) => {
+          this.router.navigate(['user/' + user._id]);
+          this.errorFlag = false;
+        },
+        (error: any) => {
+          this.errorFlag = true;
+        }
+      );
+  }
+  cancel()  { this.router.navigate(['/login']);
+  }
 }
+
+
