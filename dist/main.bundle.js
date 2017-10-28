@@ -1899,14 +1899,14 @@ var PageService = (function () {
     PageService.prototype.createPage = function (websiteId, page) {
         page._id = Math.floor(Math.random() * 100).toString();
         page.websiteId = websiteId;
-        return this._http.post(this.baseUrl + '/api/website/' + websiteId + '/page', page)
+        return this._http.post(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/website/' + websiteId + '/page', page)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     PageService.prototype.findPageByWebsiteId = function (websiteId) {
-        return this._http.get(this.baseUrl + '/api/website/' + websiteId + '/page')
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/website/' + websiteId + '/page')
             .map(function (res) {
             var data = res.json();
             return data;
@@ -1922,21 +1922,21 @@ var PageService = (function () {
     // }
     // return resultset;
     PageService.prototype.findPageById = function (pageId) {
-        return this._http.get(this.baseUrl + '/api/page' + pageId)
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/page' + pageId)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     PageService.prototype.updatePage = function (pageId, page) {
-        return this._http.put(this.baseUrl + '/api/page/' + pageId, page)
+        return this._http.put(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/page/' + pageId, page)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     PageService.prototype.deletePage = function (pageId) {
-        return this._http.delete(this.baseUrl + '/api/page' + pageId)
+        return this._http.delete(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/page' + pageId)
             .map(function (res) {
             var data = res.json();
             return data;
@@ -2068,42 +2068,42 @@ var UserService = (function () {
     }
     UserService.prototype.createUser = function (user) {
         user._id = Math.floor(Math.random() * 100).toString();
-        return this._http.post(this.baseUrl + '/api/user/', user)
+        return this._http.post(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/user/', user)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     UserService.prototype.findUserById = function (userId) {
-        return this._http.get(this.baseUrl + '/api/user/' + userId)
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/user/' + userId)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     UserService.prototype.findUserByCredentials = function (username, password) {
-        return this._http.get(this.baseUrl + '/api/user?username=' + username + '&password=' + password)
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/user?username=' + username + '&password=' + password)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     UserService.prototype.findUserByUsername = function (username) {
-        return this._http.get(this.baseUrl + '/api/user?username=' + username)
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/user?username=' + username)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     UserService.prototype.updateUser = function (userId, user) {
-        return this._http.put(this.baseUrl + '/api/user/' + userId, user)
+        return this._http.put(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/user/' + userId, user)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     UserService.prototype.deleteUser = function (userId) {
-        return this._http.delete(this.baseUrl + '/api/user/' + userId)
+        return this._http.delete(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/user/' + userId)
             .map(function (res) {
             var data = res.json();
             return data;
@@ -2160,35 +2160,35 @@ var WebsiteService = (function () {
     WebsiteService.prototype.createWebsite = function (userId, website) {
         website._id = Math.floor(Math.random() * 100).toString();
         website.developerId = userId;
-        return this._http.post(this.baseUrl + '/api/user/' + userId + '/website', website)
+        return this._http.post(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/user/' + userId + '/website', website)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     WebsiteService.prototype.findWebsitesByUser = function (userId) {
-        return this._http.get(this.baseUrl + '/api/user/' + userId + '/website')
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/user/' + userId + '/website')
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     WebsiteService.prototype.findWebsiteById = function (websiteId) {
-        return this._http.get(this.baseUrl + '/api/website/' + websiteId)
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/website/' + websiteId)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     WebsiteService.prototype.updateWebsite = function (websiteId, website) {
-        return this._http.put(this.baseUrl + '/api/website/' + websiteId, website)
+        return this._http.put(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/website/' + websiteId, website)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     WebsiteService.prototype.deleteWebsite = function (websiteId) {
-        return this._http.delete(this.baseUrl + '/api/website/' + websiteId)
+        return this._http.delete(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/website/' + websiteId)
             .map(function (res) {
             var data = res.json();
             return data;
@@ -2245,35 +2245,35 @@ var WidgetService = (function () {
     WidgetService.prototype.createWidget = function (pageId, widget) {
         widget._id = Math.floor(Math.random() * 100).toString();
         widget.pageId = pageId;
-        return this._http.post(this.baseUrl + '/api/page/' + pageId + '/widget', widget)
+        return this._http.post(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/page/' + pageId + '/widget', widget)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     WidgetService.prototype.findWidgetsByPageId = function (pageId) {
-        return this._http.get(this.baseUrl + '/api/page/' + pageId + '/widget')
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/page/' + pageId + '/widget')
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     WidgetService.prototype.findWidgetById = function (widgetId) {
-        return this._http.get(this.baseUrl + '/api/widget/' + widgetId)
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/widget/' + widgetId)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     WidgetService.prototype.updateWidget = function (widgetId, widget) {
-        return this._http.put(this.baseUrl + '/api/widget/' + widgetId, widget)
+        return this._http.put(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/widget/' + widgetId, widget)
             .map(function (res) {
             var data = res.json();
             return data;
         });
     };
     WidgetService.prototype.deleteWidget = function (widgetId) {
-        return this._http.delete(this.baseUrl + '/api/widget/' + widgetId)
+        return this._http.delete(__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl + '/api/widget/' + widgetId)
             .map(function (res) {
             var data = res.json();
             return data;
