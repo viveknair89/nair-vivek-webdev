@@ -35,7 +35,7 @@ export class UserService {
 
   createUser(user: any) {
     user._id = Math.floor(Math.random() * 100).toString();
-    return this._http.post(this.baseUrl + '/api/user/', user)
+    return this._http.post(environment.baseUrl + '/api/user/', user)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -45,7 +45,7 @@ export class UserService {
   }
 
   findUserById(userId: String) {
-    return this._http.get(this.baseUrl + '/api/user/' + userId)
+    return this._http.get(environment.baseUrl + '/api/user/' + userId)
       .map(
       (res: Response) => {
         const data = res.json();
@@ -55,7 +55,7 @@ export class UserService {
   }
 
   findUserByCredentials(username: String, password: String) {
-    return this._http.get(this.baseUrl + '/api/user?username=' + username + '&password=' + password)
+    return this._http.get(environment.baseUrl + '/api/user?username=' + username + '&password=' + password)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -65,7 +65,7 @@ export class UserService {
   }
 
   findUserByUsername(username: String) {
-    return this._http.get(this.baseUrl + '/api/user?username=' + username)
+    return this._http.get(environment.baseUrl + '/api/user?username=' + username)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -76,7 +76,7 @@ export class UserService {
 
 
   updateUser(userId, user) {
-    return this._http.put(this.baseUrl + '/api/user/' + userId, user)
+    return this._http.put(environment.baseUrl + '/api/user/' + userId, user)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -86,7 +86,7 @@ export class UserService {
   }
 
   deleteUser(userId: String) {
-    return this._http.delete(this.baseUrl + '/api/user/' + userId)
+    return this._http.delete(environment.baseUrl + '/api/user/' + userId)
       .map(
         (res: Response) => {
           const data = res.json();
