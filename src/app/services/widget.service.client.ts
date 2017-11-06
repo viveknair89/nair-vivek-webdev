@@ -23,7 +23,7 @@ export class WidgetService {
   createWidget(pageId: String, widget: any) {
     widget._id = Math.floor(Math.random() * 100).toString();
     widget.pageId = pageId;
-    return this._http.post(environment.baseUrl + '/api/page/' + pageId + '/widget', widget)
+    return this._http.post(this.baseUrl + '/api/page/' + pageId + '/widget', widget)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -33,7 +33,7 @@ export class WidgetService {
   }
 
   findWidgetsByPageId(pageId: String) {
-    return this._http.get(environment.baseUrl + '/api/page/' + pageId + '/widget')
+    return this._http.get(this.baseUrl + '/api/page/' + pageId + '/widget')
       .map(
         (res: Response) => {
           const data = res.json();
@@ -43,7 +43,7 @@ export class WidgetService {
   }
 
   findWidgetById(widgetId: String) {
-    return this._http.get(environment.baseUrl + '/api/widget/' + widgetId)
+    return this._http.get(this.baseUrl + '/api/widget/' + widgetId)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -53,7 +53,7 @@ export class WidgetService {
   }
 
   updateWidget(widgetId: String, widget: any) {
-    return this._http.put(environment.baseUrl + '/api/widget/' + widgetId, widget)
+    return this._http.put(this.baseUrl + '/api/widget/' + widgetId, widget)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -63,7 +63,7 @@ export class WidgetService {
   }
 
   deleteWidget(widgetId: String) {
-    return this._http.delete(environment.baseUrl + '/api/widget/' + widgetId)
+    return this._http.delete(this.baseUrl + '/api/widget/' + widgetId)
       .map(
         (res: Response) => {
           const data = res.json();

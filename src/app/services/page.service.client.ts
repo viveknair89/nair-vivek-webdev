@@ -24,7 +24,7 @@ export class PageService {
   createPage(websiteId: String, page: any) {
     page._id = Math.floor(Math.random() * 100).toString();
     page.websiteId = websiteId;
-    return this._http.post(environment.baseUrl + '/api/website/' + websiteId + '/page', page)
+    return this._http.post(this.baseUrl + '/api/website/' + websiteId + '/page', page)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -34,7 +34,7 @@ export class PageService {
   }
 
   findPageByWebsiteId(websiteId: String) {
-    return this._http.get(environment.baseUrl + '/api/website/' + websiteId + '/page')
+    return this._http.get(this.baseUrl + '/api/website/' + websiteId + '/page')
       .map(
         (res: Response) => {
           const data = res.json();
@@ -53,7 +53,7 @@ export class PageService {
     // return resultset;
 
   findPageById(pageId: String) {
-    return this._http.get(environment.baseUrl + '/api/page' + pageId)
+    return this._http.get(this.baseUrl + '/api/page' + pageId)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -63,7 +63,7 @@ export class PageService {
   }
 
   updatePage(pageId: String, page: any) {
-    return this._http.put(environment.baseUrl + '/api/page/' + pageId , page)
+    return this._http.put(this.baseUrl + '/api/page/' + pageId , page)
     .map(
       (res: Response) => {
         const data = res.json();
@@ -73,7 +73,7 @@ export class PageService {
   }
 
   deletePage(pageId: String) {
-    return this._http.delete(environment.baseUrl + '/api/page' + pageId)
+    return this._http.delete(this.baseUrl + '/api/page' + pageId)
       .map(
         (res: Response) => {
           const data = res.json();

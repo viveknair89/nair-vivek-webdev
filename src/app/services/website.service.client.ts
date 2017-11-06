@@ -23,7 +23,7 @@ export class WebsiteService {
   createWebsite(userId: String, website: any) {
     website._id = Math.floor(Math.random() * 100).toString();
     website.developerId = userId;
-    return this._http.post(environment.baseUrl + '/api/user/' + userId + '/website', website)
+    return this._http.post(this.baseUrl + '/api/user/' + userId + '/website', website)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -33,7 +33,7 @@ export class WebsiteService {
   }
 
   findWebsitesByUser(userId: String) {
-    return this._http.get(environment.baseUrl + '/api/user/' + userId + '/website')
+    return this._http.get(this.baseUrl + '/api/user/' + userId + '/website')
       .map(
         (res: Response) => {
           const data = res.json();
@@ -43,7 +43,7 @@ export class WebsiteService {
   }
 
   findWebsiteById(websiteId: String) {
-    return this._http.get(environment.baseUrl + '/api/website/' + websiteId)
+    return this._http.get(this.baseUrl + '/api/website/' + websiteId)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -53,7 +53,7 @@ export class WebsiteService {
   }
 
   updateWebsite(websiteId: String, website: any) {
-    return this._http.put(environment.baseUrl + '/api/website/' + websiteId, website)
+    return this._http.put(this.baseUrl + '/api/website/' + websiteId, website)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -63,7 +63,7 @@ export class WebsiteService {
     }
 
   deleteWebsite(websiteId: String) {
-    return this._http.delete(environment.baseUrl + '/api/website/' + websiteId)
+    return this._http.delete(this.baseUrl + '/api/website/' + websiteId)
       .map(
         (res: Response) => {
           const data = res.json();
