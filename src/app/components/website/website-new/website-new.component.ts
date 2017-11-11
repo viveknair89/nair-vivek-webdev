@@ -33,11 +33,9 @@ export class WebsiteNewComponent implements OnInit {
         }
       );
   }
-    // this.user = this.userService.findUserById(this.userId);
-    // this.websites = this.websiteService.findWebsitesByUser(this.userId);
+
 
   create() {
-    // this.user = this.userService.findUserById(this.userId);
     const temp = {name: this.websiteNewForm.value.name, description: this.websiteNewForm.value.description};
     this.websiteService.createWebsite(this.userId, temp)
       .subscribe(

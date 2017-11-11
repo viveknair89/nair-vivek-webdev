@@ -45,8 +45,8 @@ export class RegisterComponent implements OnInit {
     };
 
     this.userService.createUser(user)
-      .subscribe((user: any) => {
-          this.router.navigate(['user/' + user._id]);
+      .subscribe((newuser: any) => {
+          this.router.navigate(['user/' + newuser._id]);
           this.errorFlag = false;
         },
         (error: any) => {
@@ -57,5 +57,3 @@ export class RegisterComponent implements OnInit {
   cancel()  { this.router.navigate(['/login']);
   }
 }
-
-

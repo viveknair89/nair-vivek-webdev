@@ -10,13 +10,16 @@ import {ActivatedRoute} from '@angular/router';
 export class WidgetImageComponent implements OnInit {
 
   widget = {};
-  url: string;
-  width: string;
-  userId: string;
-  webid: string;
+  url: String;
+  width: String;
+  imageName: String;
+  imageText: String;
+  upload: String;
+  userId: String;
+  webid: String;
   widgets = [{}];
-  pageid: string;
-  wgid: string;
+  pageid: String;
+  wgid: String;
 
   constructor(private widgetService: WidgetService, private activatedRoutes: ActivatedRoute) {
   }
@@ -33,15 +36,22 @@ export class WidgetImageComponent implements OnInit {
             this.widget = widget;
             this.width = this.widget['width'];
             this.url = this.widget['url'];
+            this.imageName = this.widget['imageName'];
+            this.imageText = this.widget['imageText'];
+            this.upload = this.widget['upload'];
           }
         );
     });
   }
 
   update() {
+    alert('in update widget');
     this.widget['widgetType'] = 'IMAGE';
     this.widget['url'] = this.url;
     this.widget['width'] = this.width;
+    this.widget['upload'] = this.upload;
+    this.widget['imageName'] = this.imageName;
+    this.widget['imageText'] = this.imageText;
     this.widgetService.updateWidget(this.wgid, this.widget)
       .subscribe(
         (widgets: any) => {

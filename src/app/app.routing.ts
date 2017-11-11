@@ -21,6 +21,8 @@ import {WidgetListComponent} from './components/widget/widget-list/widget-list.c
 import {HomeComponent} from './components/home/home.component';
 import {ModuleWithProviders} from '@angular/core';
 import {TestComponent} from './components/test/test.component';
+import {WidgetTextComponent} from './components/widget/widget-edit/widget-text/widget-text.component';
+  import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component';
 
 
 const APP_ROUTES: Routes = [
@@ -40,7 +42,9 @@ const APP_ROUTES: Routes = [
   {path: 'user/:userId/website/:webid/page/:pageid/widget/:wgid', component: WidgetEditComponent},
   {path: 'widget-header', component: WidgetHeaderComponent},
   {path: 'widget-image', component: WidgetImageComponent},
-  {path: 'widget-youtube', component: WidgetYoutubeComponent}
+  {path: 'widget-youtube', component: WidgetYoutubeComponent},
+  {path: 'widget-text', component: WidgetTextComponent},
+  {path: 'widget-html', component: WidgetHtmlComponent}
 ];
 
 // Export the routes as module providers

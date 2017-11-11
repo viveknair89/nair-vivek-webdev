@@ -21,54 +21,43 @@ export class WidgetService {
   };
 
   createWidget(pageId: String, widget: any) {
-    widget._id = Math.floor(Math.random() * 100).toString();
     widget.pageId = pageId;
     return this._http.post(this.baseUrl + '/api/page/' + pageId + '/widget', widget)
       .map(
         (res: Response) => {
-          const data = res.json();
-          return data;
-        }
-      );
+          return res.json();
+        });
   }
 
   findWidgetsByPageId(pageId: String) {
     return this._http.get(this.baseUrl + '/api/page/' + pageId + '/widget')
       .map(
         (res: Response) => {
-          const data = res.json();
-          return data;
-        }
-      );
+          return res.json();
+        });
   }
 
   findWidgetById(widgetId: String) {
     return this._http.get(this.baseUrl + '/api/widget/' + widgetId)
       .map(
         (res: Response) => {
-          const data = res.json();
-          return data;
-        }
-      );
+          return res.json();
+        });
   }
 
   updateWidget(widgetId: String, widget: any) {
     return this._http.put(this.baseUrl + '/api/widget/' + widgetId, widget)
       .map(
         (res: Response) => {
-          const data = res.json();
-          return data;
-        }
-      );
+          return res.json();
+        });
   }
 
   deleteWidget(widgetId: String) {
     return this._http.delete(this.baseUrl + '/api/widget/' + widgetId)
       .map(
         (res: Response) => {
-          const data = res.json();
-          return data;
-        }
-      );
+          return res.json();
+        });
   }
 }

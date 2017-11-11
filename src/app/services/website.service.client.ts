@@ -21,7 +21,6 @@ export class WebsiteService {
   };
 
   createWebsite(userId: String, website: any) {
-    website._id = Math.floor(Math.random() * 100).toString();
     website.developerId = userId;
     return this._http.post(this.baseUrl + '/api/user/' + userId + '/website', website)
       .map(
@@ -60,7 +59,7 @@ export class WebsiteService {
           return data;
         }
       );
-    }
+  }
 
   deleteWebsite(websiteId: String) {
     return this._http.delete(this.baseUrl + '/api/website/' + websiteId)
