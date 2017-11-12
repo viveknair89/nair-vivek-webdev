@@ -11,7 +11,7 @@
 
       <!--tick mark-->
       <p class="navbar-text pull-right">
-        <a type="submit" [routerLink] = "['/user', userId]" class="viv-white-text navbar-link">
+        <a (click)="update()" [routerLink] = "['/user', userId]" class="viv-white-text navbar-link">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
       </p>

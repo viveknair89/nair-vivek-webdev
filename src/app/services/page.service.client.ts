@@ -48,7 +48,7 @@ export class PageService {
     // return resultset;
 
   findPageById(pageId: String) {
-    return this._http.get(this.baseUrl + '/api/page' + pageId)
+    return this._http.get(this.baseUrl + '/api/page/' + pageId)
       .map(
         (res: Response) => {
           return res.json();
@@ -64,7 +64,7 @@ export class PageService {
   }
 
   deletePage(pageId: String) {
-    return this._http.delete(this.baseUrl + '/api/page' + pageId)
+    return this._http.delete(this.baseUrl + '/api/page/f' + pageId)
       .map(
         (res: Response) => {
           return res.json();

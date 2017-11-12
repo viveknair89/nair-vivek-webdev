@@ -36,22 +36,21 @@ export class WidgetImageComponent implements OnInit {
             this.widget = widget;
             this.width = this.widget['width'];
             this.url = this.widget['url'];
-            this.imageName = this.widget['imageName'];
-            this.imageText = this.widget['imageText'];
-            this.upload = this.widget['upload'];
+            // this.imageName = this.widget['imageName'];
+            // this.imageText = this.widget['imageText'];
+            // this.upload = this.widget['upload'];
           }
         );
     });
   }
 
   update() {
-    alert('in update widget');
     this.widget['widgetType'] = 'IMAGE';
     this.widget['url'] = this.url;
     this.widget['width'] = this.width;
-    this.widget['upload'] = this.upload;
-    this.widget['imageName'] = this.imageName;
-    this.widget['imageText'] = this.imageText;
+    // this.widget['upload'] = this.upload;
+    // this.widget['imageName'] = this.imageName;
+    // this.widget['imageText'] = this.imageText;
     this.widgetService.updateWidget(this.wgid, this.widget)
       .subscribe(
         (widgets: any) => {

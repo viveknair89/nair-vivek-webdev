@@ -19,6 +19,33 @@
       </span>
     </div>
     <div class="form-group">
+      <input placeholder="firstName"
+             name="firstName"
+             type="text"
+             class="form-control"
+             ngModel
+             required
+             #username="ngModel"/>
+    </div>
+    <div class="form-group">
+      <input placeholder="lastName"
+             name="lastName"
+             type="text"
+             class="form-control"
+             ngModel
+             required
+             #username="ngModel"/>
+    </div>
+    <div class="form-group">
+      <input placeholder="xyz@email"
+             name="email"
+             type="text"
+             class="form-control"
+             ngModel
+             required
+             #username="ngModel"/>
+    </div>
+    <div class="form-group">
       <input placeholder="password"
              name="password"
              type="password"
@@ -26,9 +53,6 @@
              ngModel
              required
              #password="ngModel"/>
-      <span class ="help-block" *ngIf="!password.valid && password.touched">
-        Please enter password
-      </span>
     </div>
     <div class="form-group">
       <input placeholder="verify password"
@@ -39,14 +63,11 @@
              ngModel
              required
              #verify_password="ngModel"/>
-      <span class ="help-block" *ngIf="!verify_password.valid && password.touched">
-        Please verify the password
-      </span>
     </div>
-    <button (click)="register(username, password, verify_password)" class="btn btn-primary btn-block"
+    <button class="btn btn-primary btn-block"
             type=submit [disabled]="!f.valid">Register</button>
 
-    <button (click)="cancel()" class="btn btn-danger btn-block"
-            type=submit>Cancel</button>
+    <button (click)="cancel()" class="btn btn-danger
+    btn-block">Cancel</button>
   </form>
 </div>

@@ -12,7 +12,7 @@ module.exports = function(api) {
     const newUser = req.body;
     userModel.createUser(newUser)
       .then(function(user){
-        res.json(newUser);
+        res.json(user);
       });
   }
   function helloUser(req, res){

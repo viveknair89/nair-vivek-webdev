@@ -18,6 +18,7 @@ function updateUser(userId, user){
 }
 
 function  createUser(user) {
+  console.log('cresting user');
   return UserModel.create(user);
 }
 

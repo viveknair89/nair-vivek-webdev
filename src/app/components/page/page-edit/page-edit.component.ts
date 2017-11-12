@@ -19,7 +19,7 @@ export class PageEditComponent implements OnInit {
   description: String;
   pageid: String;
   webid: String;
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute,
+  constructor(private activatedRoute: ActivatedRoute,
               private pageService: PageService, private router: Router) { }
 
   ngOnInit() {
@@ -29,22 +29,19 @@ export class PageEditComponent implements OnInit {
         this.userId = params['userId'];
       }
     );
-    this.pageService.findPageById(this.pageid).subscribe((page: any) => {
+
+    this.pageService.findPageById(this.pageid)
+      .subscribe((page: any) => {
         this.name = page.name;
-        this.description = page.description();
+        this.description = page.description;
       }
     );
-    // this.pages = this.pageService.findPageByWebsiteId(this.webid);
-    // this.page = this.pageService.findPageById(this.pageid);
-    // this.name = this.page.name;
-    // this.description = this.page.description;
     this.pageService.findPageByWebsiteId(this.webid).subscribe((pages: any) => {
         this.pages = pages;
       }
     );
   }
   update() {
-    // this.user = this.userService.findUserById(this.userId);
     const tempPage = {'_id': this.pageid, name: this.pageEditForm.value.name,
       description: this.pageEditForm.value.description, 'websiteId': this.webid };
     this.pageService.updatePage( this.pageid, tempPage)

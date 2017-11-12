@@ -28,22 +28,23 @@
   </div>
 </nav>
 <div class="container-fluid viv-top-buffer">
-  <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-      <label for="imageName">
-        Name
-      </label>
-      <input [(ngModel)]="imageName" required name="imageName" type="text" class="form-control" id="imageName"
-      placeholder="">
-    </div>
+  <!--<form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">-->
+  <form>
+    <!--<div class="form-group">-->
+      <!--<label for="imageName">-->
+        <!--Name-->
+      <!--</label>-->
+      <!--<input [(ngModel)]="imageName" required name="imageName" type="text" class="form-control" id="imageName"-->
+      <!--placeholder="">-->
+    <!--</div>-->
 
-    <div class="form-group">
-      <label for="imageText">
-        Text
-      </label>
-      <input [(ngModel)]="imageText" required name="imageText" type="text" class="form-control" id="imageText"
-             placeholder="">
-    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="imageText">-->
+        <!--Text-->
+      <!--</label>-->
+      <!--<input [(ngModel)]="imageText" required name="imageText" type="text" class="form-control" id="imageText"-->
+             <!--placeholder="">-->
+    <!--</div>-->
 
     <div class="form-group">
       <label for="url">
@@ -61,24 +62,24 @@
              placeholder="100%">
     </div>
 
-    <div class="form-group">
-      <label for="myFile">
-        Upload
-      </label>
-      <input [(ngModel)]="upload" type="file" class="form-control" name="myFile" id="myFile" required
-             placeholder="100%">
-    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="myFile">-->
+        <!--Upload-->
+      <!--</label>-->
+      <!--<input [(ngModel)]="upload" type="file" class="form-control" name="myFile" id="myFile" required-->
+             <!--placeholder="100%">-->
+    <!--</div>-->
 
-    <div class="form-group">
-      <!--<input  name="myFile"   type="file" class="form-control"/>-->
-      <input  name="widgetId" value="{{widgetId}}"   style="display: none"/>
-      <input  name="websiteId" value="{{websiteId}}"   style="display: none"/>
-      <input  name="pageId" value="{{pageId}}"   style="display: none"/>
-      <input  name="userId" value="{{userId}}"   style="display: none"/>
-      <button type="submit" class="form-control btn btn-primary">
-        Upload Image
-      </button>
-    </div>
+    <!--<div class="form-group">-->
+      <!--&lt;!&ndash;<input  name="myFile"   type="file" class="form-control"/>&ndash;&gt;-->
+      <!--<input  name="widgetId" value="{{widgetId}}"   style="display: none"/>-->
+      <!--<input  name="websiteId" value="{{websiteId}}"   style="display: none"/>-->
+      <!--<input  name="pageId" value="{{pageId}}"   style="display: none"/>-->
+      <!--<input  name="userId" value="{{userId}}"   style="display: none"/>-->
+      <!--<button type="submit" class="form-control btn btn-primary">-->
+        <!--Upload Image-->
+      <!--</button>-->
+    <!--</div>-->
 
     <div class="form-group">
       <a (click)="delete()" class="btn btn-danger btn-block"
