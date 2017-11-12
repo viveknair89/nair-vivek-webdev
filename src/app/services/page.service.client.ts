@@ -64,7 +64,7 @@ export class PageService {
   }
 
   deletePage(pageId: String) {
-    return this._http.delete(this.baseUrl + '/api/page/f' + pageId)
+    return this._http.delete(this.baseUrl + '/api/page/' + pageId)
       .map(
         (res: Response) => {
           return res.json();
