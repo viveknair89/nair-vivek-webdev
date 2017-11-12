@@ -2155,7 +2155,7 @@ var PageService = (function () {
         });
     };
     PageService.prototype.deletePage = function (pageId) {
-        return this._http.delete(this.baseUrl + '/api/page/f' + pageId)
+        return this._http.delete(this.baseUrl + '/api/page/' + pageId)
             .map(function (res) {
             return res.json();
         });
