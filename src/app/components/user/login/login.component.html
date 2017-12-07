@@ -32,7 +32,10 @@
     </div>
     <button (click)="login(username, password)" class="btn btn-primary btn-block"
             type=submit [disabled]="!f.valid">Login</button>
-
+    <a href="http://localhost:3100/auth/facebook" class="btn btn-primary btn-block">
+      <span class="fa fa-facebook"></span>
+      Facebook Login
+    </a>
     <button (click)="register()" class="btn btn-success btn-block"
             type=submit>Register</button>
   </form>

@@ -23,6 +23,7 @@ import {ModuleWithProviders} from '@angular/core';
 import {TestComponent} from './components/test/test.component';
 import {WidgetTextComponent} from './components/widget/widget-edit/widget-text/widget-text.component';
   import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component';
+  import { AuthGuard } from './services/auth-guard.service';
 
 
 const APP_ROUTES: Routes = [
@@ -30,7 +31,7 @@ const APP_ROUTES: Routes = [
   {path: 'test', component: TestComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/:userId', component: ProfileComponent},
+  {path: 'user', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'user/:userId/website', component: WebsiteListComponent},
   {path: 'user/:userId/website/new', component: WebsiteNewComponent},
   {path: 'user/:userId/website/:webid', component: WebsiteEditComponent},

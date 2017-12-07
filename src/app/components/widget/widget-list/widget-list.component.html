@@ -70,7 +70,7 @@
       </a>
       <span class="glyphicon glyphicon-menu-hamburger"></span>
     </div>
-    <img [style.width]="widget.width" class="viv-content" src={{widget.url}}/>
+    <img [style.width]="widget.width" class="viv-content" [src]="widget.url"/>
   </div>
 
   <div class="youtube-widget viv-footer-buffer" *ngSwitchCase="'YOUTUBE'">

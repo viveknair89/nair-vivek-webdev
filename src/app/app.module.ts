@@ -29,6 +29,9 @@ import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+import {SharedService} from './services/shared.service.client';
+import {AuthGuard} from './services/auth-guard.service';
+
 
 // import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
 
@@ -65,7 +68,7 @@ import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html
     Routing
   ],
   // Client Side services here
-  providers: [UserService, WebsiteService, PageService, WidgetService, TestService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, TestService, SharedService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

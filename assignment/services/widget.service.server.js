@@ -3,6 +3,7 @@ module.exports = function (app) {
   var multer = require('multer'); // npm install multer --save
   var upload = multer({dest: __dirname + '/../../src/assets/uploads'});
 
+
   app.post('/api/upload', upload.single('myFile'), uploadImage);
   app.post('/api/page/:pageId/widget', createWidget);
   app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
@@ -45,13 +46,13 @@ module.exports = function (app) {
       });
   }
 
-  // function getWidgetById(wid){
-  //   for (var i=0; i< widgets.length; i++){
-  //     if(widgets[i]._id === wid){
-  //       return widgets[i];
-  //     }
-  //   }
-  // }
+  function getWidgetById(wid){
+    WidgetModel.findWidgetById(wid)
+      .then(function (widget) {
+        res.json(widget);
+      });
+  }
+
   function updateWidget(req, res){
     const widgetId =req.params['widgetId'];
     const newWidget = req.body;
@@ -83,15 +84,16 @@ module.exports = function (app) {
       }));
   }
   function uploadImage(req, res) {
-    // console.log("rchd upload");
-
-    var widgetId      = req.body.widgetId;
+    console.log(req.body);
+    var widgetId      = req.body.widgetId
     var width         = req.body.width;
     var myFile        = req.file;
 
     var userId = req.body.userId;
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
+    var widget = req.body.widget;
+    var appUrl = req.body.appUrl;
 
     var originalname  = myFile.originalname; // file name on user's computer
     var filename      = myFile.filename;     // new file name in upload folder
@@ -100,14 +102,23 @@ module.exports = function (app) {
     var size          = myFile.size;
     var mimetype      = myFile.mimetype;
 
-    widget = getWidgetById(widgetId);
-    widget.url = 'assets/uploads/'+filename;
+    // widget = getWidgetById(widgetId);
+    // widget.url = 'assets/uploads/'+filename;
 
-    var callbackUrl   = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+    var widget = {
+      url: 'assets/uploads/'+filename,
+      width: width
+    }
+
+    WidgetModel.updateWidget(widgetId,widget)
+      .then (function (status) {
+        res.json(status);
+      });
+    
+    var callbackUrl   = appUrl+'/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget';
 
     res.redirect(callbackUrl);
   }
-
 
 
 }

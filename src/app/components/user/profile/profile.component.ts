@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../services/user.service.client';
+import { SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -19,29 +20,37 @@ export class ProfileComponent implements OnInit {
   errorFlag: boolean;
   errorMsg: String;
   firstName: String;
+  password: String;
   lastName: String;
   email: String;
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router,
+              private sharedService: SharedService) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: any) => {
-        this.userId = params['userId'];
-      }
-    );
-    this.userService.findUserById(this.userId)
-      .subscribe((user: any) => {
-          this.user = user;
-          this.userName = this.user['username'];
-          this.firstName = this.user['firstName'];
-          this.lastName = this.user['lastName'];
-          this.email = this.user['email'];
-        },
-        (error: any) => {
-          this.errorFlag = true;
-        }
-      );
-
+    // this.activatedRoute.params.subscribe((params: any) => {
+    //     this.userId = params['userId'];
+    //   }
+    // );
+    // this.userService.findUserById(this.userId)
+    //   .subscribe((user: any) => {
+    //       this.user = user;
+    //       this.userName = this.user['username'];
+    //       this.firstName = this.user['firstName'];
+    //       this.lastName = this.user['lastName'];
+    //       this.email = this.user['email'];
+    //     },
+    //     (error: any) => {
+    //       this.errorFlag = true;
+    //     }
+    //   );
+    this.user =  this.sharedService.user;
+    this.userId = this.user['_id'];
+    this.userName = this.user['username'];
+    this.firstName = this.user['firstName'];
+    this.lastName = this.user['lastName'];
+    this.password = this.user['password'];
+    this.email = this.user['email'];
   }
   update() {
     // if (this.profileForm.value.username.length > 0) {
@@ -69,4 +78,12 @@ export class ProfileComponent implements OnInit {
           this.email = this.user['email'];
         });
   }
+
+  logout() {
+    this.userService.logout()
+      .subscribe(
+        (data: any) => this.router.navigate(['/login'])
+      );
+  }
+
 }

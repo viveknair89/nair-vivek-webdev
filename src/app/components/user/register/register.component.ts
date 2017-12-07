@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../services/user.service.client';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   errorMsg: String;
   errorFlag: boolean;
 
-  constructor(private userService: UserService,
+  constructor(private userService: UserService, private sharedService: SharedService,
               private router: Router) {
   }
 
@@ -44,15 +45,27 @@ export class RegisterComponent implements OnInit {
       email: this.email
     };
 
-    this.userService.createUser(user)
-      .subscribe((newuser: any) => {
-          this.router.navigate(['user/' + newuser._id]);
-          this.errorFlag = false;
+    // this.userService.createUser(user)
+    //   .subscribe((newuser: any) => {
+    //       this.router.navigate(['user/' + newuser._id]);
+    //       this.errorFlag = false;
+    //     },
+    //     (error: any) => {
+    //       this.errorFlag = true;
+    //     }
+    //   );
+    this.userService.register(user  )
+      .subscribe(
+        (data: any) => {
+          this.sharedService.user = data;
+          this.router.navigate(['/user']);
         },
         (error: any) => {
           this.errorFlag = true;
+          this.errorMsg = error._body;
         }
       );
+
   }
   cancel()  { this.router.navigate(['/login']);
   }

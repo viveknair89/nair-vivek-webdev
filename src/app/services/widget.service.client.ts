@@ -46,6 +46,7 @@ export class WidgetService {
   }
 
   updateWidget(widgetId: String, widget: any) {
+    // alert("client service");
     return this._http.put(this.baseUrl + '/api/widget/' + widgetId, widget)
       .map(
         (res: Response) => {
