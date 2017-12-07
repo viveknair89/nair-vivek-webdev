@@ -22,7 +22,7 @@ export class WidgetImageComponent implements OnInit {
   pageid: String;
   wgid: String;
   baseUrl = environment.baseUrl;
-  appUrl = environment.appUrl;
+
 
   constructor(private widgetService: WidgetService, private activatedRoutes: ActivatedRoute) {
   }

@@ -38,7 +38,7 @@ module.exports = function(api) {
 
   function localStrategy(username, password, done) {
     userModel
-      .findUserByUsernam(username)
+      .findUserByUsername(username)
       .then(
         function(user) {
           if(user.username === username && bcrypt.compareSync(password,user.password)) {
