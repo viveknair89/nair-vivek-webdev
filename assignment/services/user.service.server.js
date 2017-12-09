@@ -147,7 +147,7 @@ module.exports = function(api) {
 
   function createUser(req, res){
     const newUser = req.body;
-    newUser.password = bcrypt.hashSync(user.password);
+    newUser.password = bcrypt.hashSync(newUser.password);
     userModel.createUser(newUser)
       .then(function(user){
         res.json(user);

@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
               private sharedService: SharedService) { }
 
   ngOnInit() {
+    alert("in profile")
     // this.activatedRoute.params.subscribe((params: any) => {
     //     this.userId = params['userId'];
     //   }
