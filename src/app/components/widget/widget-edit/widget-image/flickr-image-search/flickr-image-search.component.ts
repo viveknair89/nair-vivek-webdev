@@ -34,7 +34,6 @@ export class FlickrImageSearchComponent implements OnInit {
   }
 
   searchPhotos() {
-    alert(this.pageId);
     this.flickrService
       .searchPhotos(this.searchText)
       .subscribe(

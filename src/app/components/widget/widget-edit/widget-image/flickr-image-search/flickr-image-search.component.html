@@ -1,4 +1,23 @@
-<div class="container-fluid">
+<nav class="navbar navbar-fixed-top">
+  <div class="container-fluid bg-primary">
+    <div class="row">
+      <div class="col-sm-6">
+        <!--heading on the nav bar-->
+        <p class="navbar-text pull-left">
+          <a class="navbar-link" [routerLink]="['/user', userId, 'website', webId, 'page', pageId, 'widget']">
+            <span class="viv-white-text glyphicon glyphicon-menu-left"></span>
+          </a>
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <a class="navbar-band viv-white-text thick">
+          <b>Search Image</b>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid viv-top-buffer">
 <div class="input-group">
   <input [(ngModel)]="searchText" type="text" class="form-control">
   <span class="input-group-btn">
