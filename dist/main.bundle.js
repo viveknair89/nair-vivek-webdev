@@ -1767,7 +1767,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "body{\r\n  padding-top: 40px;\r\n}\r\n.viv-toolbar{\r\n  position: absolute;\r\n  right: 0px;\r\n  background-color: transparent;\r\n  padding: 7px;\r\n  border-bottom-left-radius: 10px;\r\n}\r\n\r\n.viv-widget .viv-content{\r\n  width: 100%;\r\n}\r\n.viv-white-text{\r\n  color: white;\r\n}\r\n\r\n.viv-top-buffer {\r\n  top: 0px;\r\n  bottom: 0px;\r\n  left: 0px;\r\n  margin-top: 50px;\r\n  padding-top: 15px\r\n}\r\n\r\n.viv-footer-buffer{\r\n  top:0px;\r\n  bottom: 0px;\r\n  left: 0px;\r\n  margin-bottom: 60px;\r\n  padding-bottom: 15px\r\n}\r\n\r\n\r\nbody.fixed_width #page, body.fixed_width #footer, body.canvas .page-canvas {\r\n  width: 960px;\r\n\r\n}\r\n", ""]);
 
 // exports
 
@@ -1780,7 +1780,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n<div class=\"input-group\">\n  <input [(ngModel)]=\"searchText\" type=\"text\" class=\"form-control\">\n  <span class=\"input-group-btn\">\n         <a (click)=\"searchPhotos()\" class=\"btn btn-default\" type=\"button\">\n             <span class=\"glyphicon glyphicon-search\"></span>\n         </a>\n </span>\n</div>\n<div class=\"row\">\n  <div *ngFor = \"let pic of photos['photo']\"\n       class=\"col-xs-4\">\n    <img    (click)=\"selectPhoto(pic)\"\n            width=\"100%\"\n            [src] = \"['https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' +   pic.id + '_' + pic.secret + '_s.jpg']\"/>\n\n    <p></p>\n  </div>\n</div>\n</div>\n"
+module.exports = "<nav class=\"navbar navbar-fixed-top\">\n  <div class=\"container-fluid bg-primary\">\n    <div class=\"row\">\n      <div class=\"col-sm-6\">\n        <!--heading on the nav bar-->\n        <p class=\"navbar-text pull-left\">\n          <a class=\"navbar-link\" [routerLink]=\"['/user', userId, 'website', webId, 'page', pageId, 'widget']\">\n            <span class=\"viv-white-text glyphicon glyphicon-menu-left\"></span>\n          </a>\n        </p>\n      </div>\n      <div class=\"col-sm-6\">\n        <a class=\"navbar-band viv-white-text thick\">\n          <b>Search Image</b>\n        </a>\n      </div>\n    </div>\n  </div>\n</nav>\n<div class=\"container-fluid viv-top-buffer\">\n<div class=\"input-group\">\n  <input [(ngModel)]=\"searchText\" type=\"text\" class=\"form-control\">\n  <span class=\"input-group-btn\">\n         <a (click)=\"searchPhotos()\" class=\"btn btn-default\" type=\"button\">\n             <span class=\"glyphicon glyphicon-search\"></span>\n         </a>\n </span>\n</div>\n<div class=\"row\">\n  <div *ngFor = \"let pic of photos['photo']\"\n       class=\"col-xs-4\">\n    <img    (click)=\"selectPhoto(pic)\"\n            width=\"100%\"\n            [src] = \"['https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' +   pic.id + '_' + pic.secret + '_s.jpg']\"/>\n\n    <p></p>\n  </div>\n</div>\n</div>\n"
 
 /***/ }),
 
@@ -1828,7 +1828,6 @@ var FlickrImageSearchComponent = (function () {
     };
     FlickrImageSearchComponent.prototype.searchPhotos = function () {
         var _this = this;
-        alert(this.pageId);
         this.flickrService
             .searchPhotos(this.searchText)
             .subscribe(function (data) {
