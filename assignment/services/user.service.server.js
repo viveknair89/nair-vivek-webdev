@@ -1,13 +1,14 @@
 module.exports = function(api) {
   var userModel = require("../models/user/user.model.server");
-  var bcrypt = require("bcrypt-nodejs")
+  var bcrypt = require("bcrypt-nodejs");
   var passport = require('passport');
   var LocalStrategy = require('passport-local').Strategy;
   var FacebookStrategy = require('passport-facebook').Strategy;
   var facebookConfig ={
     clientID : "374947576290073",
     clientSecret : "f6163559d9f11a5d8b3356ebf19746b8",
-    callbackURL :"http://localhost:3100/auth/facebook/callback"
+    // callbackURL :"http://localhost:3100/auth/facebook/callback"
+    callbackURL : "https://nair-vivek-webdev.herokuapp.com/auth/facebook/callback"
   };
 
   api.get("/api/user/hello", helloUser);
@@ -16,7 +17,7 @@ module.exports = function(api) {
   api.post("/api/user", createUser);
   api.delete("/api/user/:userId", deleteUser);
   // api.put("/api/user/:userId", updateUser);
-  api.put("/api/user", updateUser);
+  api.put("/api/user/:userId", updateUser);
   api.post('/api/login', passport.authenticate('local'), login);
   api.post('/api/logout', logout);
   api.post ('/api/register', register);
@@ -26,8 +27,10 @@ module.exports = function(api) {
 
   api.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-      successRedirect: 'http://localhost:4200/user',
-      failureRedirect: 'http://localhost:4200/login'
+      // successRedirect: 'http://localhost:4200/user',
+      // failureRedirect: 'http://localhost:4200/login'
+      successRedirect: 'https://nair-vivek-webdev.herokuapp.com/user',
+      failureRedirect: 'https://nair-vivek-webdev.herokuapp.com/login'
     }));
 
 
@@ -195,12 +198,10 @@ module.exports = function(api) {
   }
 
   function updateUser(req, res) {
-    // const userId = req.params["userId"];
+    const userId = req.params["userId"];
     var user = req.body;
-    var passport         = require('passport');
-    var FacebookStrategy = require('passport-facebook').Strategy;
 
-    const userId = user["userId"];
+    // const userId = user["userId"];
     userModel
       .updateUser(userId, user)
       .then(function(user){

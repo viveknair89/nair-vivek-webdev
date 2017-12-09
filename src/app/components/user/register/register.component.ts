@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
     //       this.errorFlag = true;
     //     }
     //   );
-    this.userService.register(user  )
+    this.userService.register(user)
       .subscribe(
         (data: any) => {
           this.sharedService.user = data;

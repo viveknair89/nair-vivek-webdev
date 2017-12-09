@@ -68,6 +68,7 @@ export class ProfileComponent implements OnInit {
     // if (this.profileForm.value.email.length > 0) {
     this.user['email'] = this.profileForm.value.email;
     // }
+    console.log(this.userId);
     this.userService.updateUser( this.userId, this.user)
       .subscribe(
         (user: any) => {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WidgetService} from '../../../../services/widget.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 
 @Component({
@@ -24,7 +24,8 @@ export class WidgetImageComponent implements OnInit {
   baseUrl = environment.baseUrl;
 
 
-  constructor(private widgetService: WidgetService, private activatedRoutes: ActivatedRoute) {
+  constructor(private widgetService: WidgetService, private activatedRoutes: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -60,6 +61,7 @@ export class WidgetImageComponent implements OnInit {
       .subscribe(
         (widgets: any) => {
           this.widgets = widgets;
+          this.router.navigate(['user/' + this.userId, 'website', this.wgid, 'page', this.pageid, 'widget']);
         }
       );
   }

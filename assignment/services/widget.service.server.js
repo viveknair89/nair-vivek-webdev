@@ -106,7 +106,7 @@ module.exports = function (app) {
     // widget.url = 'assets/uploads/'+filename;
 
     var widget = {
-      url: 'assets/uploads/'+filename,
+      url: '/assets/uploads/'+filename,
       width: width
     }
 
@@ -114,8 +114,9 @@ module.exports = function (app) {
       .then (function (status) {
         res.json(status);
       });
-    
-    var callbackUrl   = appUrl+'/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget';
+
+    // var callbackUrl   = "http://localhost:4200/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+    var callbackUrl   = "https://nair-vivek-webdev.herokuapp.com//user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
 
     res.redirect(callbackUrl);
   }

@@ -31,6 +31,8 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
 import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
 import {SharedService} from './services/shared.service.client';
 import {AuthGuard} from './services/auth-guard.service';
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import { FlickrService} from './services/flickr.service.client';
 
 
 // import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
@@ -58,7 +60,8 @@ import {AuthGuard} from './services/auth-guard.service';
     WidgetEditComponent,
     WidgetHeaderComponent,
     WidgetTextComponent,
-    WidgetHtmlComponent
+    WidgetHtmlComponent,
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import {AuthGuard} from './services/auth-guard.service';
     Routing
   ],
   // Client Side services here
-  providers: [UserService, WebsiteService, PageService, WidgetService, TestService, SharedService, AuthGuard],
+  providers: [UserService, WebsiteService, PageService, WidgetService, TestService, SharedService, AuthGuard,
+    FlickrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

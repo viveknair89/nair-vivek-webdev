@@ -4,15 +4,24 @@ const http = require('http');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const expressSession = require('express-session');
 const passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+SESSION_SECRET = '';
+if (process.env.SESSION_SECRET) {
+  sessionSecret = process.env.SESSION_SECRET;
+} else {
+  sessionSecret = "vasdakjshdakjh";
+}
 // app.use(session({secret: process.env.SESSION_SECRET }));
-app.use(session({secret: "vivek" }));
+// app.use(session({secret: "vivek" }));
+app.use(expressSession({secret: sessionSecret}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -37,15 +46,15 @@ app.set('port', port);
 // Create HTTP server
 const server = http.createServer(app);
 
-// var serverSide = require("./server/test-mongodb/app");
-// serverSide(app);
+var serverSide = require("./server/test-mongodb/app");
+serverSide(app);
 
 require("./assignment/app.js")(app);
-
+app.listen(port);
 // For Build: Catch all other routes and return the index file -- BUILDING
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, './dist/index.html'));
 });
 
 
-server.listen( port , () => console.log('Running'));
+// server.listen( port , () => console.log('Running'));

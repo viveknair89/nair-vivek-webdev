@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
         (user: any) => {
           if (user) {
             this.sharedService.user = user;
-            this.router.navigate(['/user']);
+            this.router.navigate(['/user', user._id]);
           } else {
             this.errorFlag = true;
           }
@@ -60,6 +60,12 @@ export class LoginComponent implements OnInit {
         });
   }
 
+  logout() {
+    this.userService.logout()
+      .subscribe(
+        (user: any) => this.router.navigate(['/login'])
+      );
+  }
 
   register() { this.router.navigate(['/register']);
   }

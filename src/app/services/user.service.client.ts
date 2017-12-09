@@ -72,7 +72,7 @@ export class UserService {
 
   register(user: any) {
     this.options.withCredentials = true;
-    return this._http.post(this.baseUrl + '/api/register', user, this.options)
+    return this._http.post(this.baseUrl + '/api/user', user, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -114,7 +114,7 @@ export class UserService {
   }
   updateUser(userId , user) {
     // return this._http.put(this.baseUrl + '/api/user/' + userId, user)
-    return this._http.put(this.baseUrl + '/api/user', user)
+    return this._http.put(this.baseUrl + '/api/user/' + userId, user)
       .map(
         (res: Response) => {
           return res.json();
