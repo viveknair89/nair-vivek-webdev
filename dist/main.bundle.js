@@ -255,7 +255,8 @@ var APP_ROUTES = [
     { path: 'test', component: __WEBPACK_IMPORTED_MODULE_17__components_test_test_component__["a" /* TestComponent */] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_1__components_user_login_login_component__["a" /* LoginComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_2__components_user_register_register_component__["a" /* RegisterComponent */] },
-    { path: 'user/:userId', component: __WEBPACK_IMPORTED_MODULE_3__components_user_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/:userId', redirectTo: 'profile', pathMatch: 'full' },
+    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_3__components_user_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__services_auth_guard_service__["a" /* AuthGuard */]] },
     { path: 'user/:userId/website', component: __WEBPACK_IMPORTED_MODULE_4__components_website_website_list_website_list_component__["a" /* WebsiteListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__services_auth_guard_service__["a" /* AuthGuard */]] },
     { path: 'user/:userId/website/new', component: __WEBPACK_IMPORTED_MODULE_6__components_website_website_new_website_new_component__["a" /* WebsiteNewComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__services_auth_guard_service__["a" /* AuthGuard */]] },
     { path: 'user/:userId/website/:webid', component: __WEBPACK_IMPORTED_MODULE_5__components_website_website_edit_website_edit_component__["a" /* WebsiteEditComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__services_auth_guard_service__["a" /* AuthGuard */]] },
@@ -1057,7 +1058,7 @@ var RegisterComponent = (function () {
         this.userService.register(user)
             .subscribe(function (data) {
             _this.sharedService.user = data;
-            _this.router.navigate(['/user']);
+            _this.router.navigate(['/profile']);
         }, function (error) {
             _this.errorFlag = true;
             _this.errorMsg = error._body;
