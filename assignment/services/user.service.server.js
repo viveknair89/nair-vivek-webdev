@@ -13,7 +13,7 @@ module.exports = function(api) {
 
   api.get("/api/user/hello", helloUser);
   api.get("/api/user/:userId", findUserById);
-  api.get("/api/user",findUsers);
+  // api.get("/api/user",findUsers);
   api.post("/api/user", createUser);
   api.delete("/api/user/:userId", deleteUser);
   // api.put("/api/user/:userId", updateUser);
@@ -147,6 +147,7 @@ module.exports = function(api) {
 
   function createUser(req, res){
     const newUser = req.body;
+    newUser.password = bcrypt.hashSync(user.password);
     userModel.createUser(newUser)
       .then(function(user){
         res.json(user);

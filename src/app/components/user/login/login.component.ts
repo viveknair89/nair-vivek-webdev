@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     this.password = this.loginForm.value.password;
 
     // calling client side userservice to send login information
-    console.log('data', this.username);
+    console.log(this.username);
     this.userService.login(this.username, this.password)
       .subscribe(
         (user: any) => {
