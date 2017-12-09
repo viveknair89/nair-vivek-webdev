@@ -897,6 +897,7 @@ var ProfileComponent = (function () {
         this.user = {};
     }
     ProfileComponent.prototype.ngOnInit = function () {
+        alert("in profile");
         // this.activatedRoute.params.subscribe((params: any) => {
         //     this.userId = params['userId'];
         //   }
