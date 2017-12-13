@@ -37,6 +37,7 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "rxjs": "^5.1.0",
+    "startbootstrap-stylish-portfolio": "^4.0.0-beta",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
