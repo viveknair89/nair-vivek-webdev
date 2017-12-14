@@ -1,0 +1,23 @@
+.img-circle {
+  border-bottom-left-radius: 25%;
+  border-top-left-radius: 25%;
+  border-top-right-radius: 25%;
+  border-bottom-right-radius: 25%;
+}
+
+.viv-container {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+
+/* resize images */
+.viv-container img {
+  width: 100%;
+  height: 150%;
+}
+.borderimg1 {
+  /*border: 10px solid transparent;*/
+  /*padding: 15px;*/
+  border:10px solid #1b1e21;
+}

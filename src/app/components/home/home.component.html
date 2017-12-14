@@ -5,45 +5,37 @@
 
 <body id="page-top">
 <!-- Navigation -->
-<a class="menu-toggle rounded" href="#">
-  <i class="fa fa-bars"></i>
-</a>
-<nav id="sidebar-wrapper">
-  <ul class="sidebar-nav">
-    <li class="sidebar-brand">
-      <a class="js-scroll-trigger" href="#page-top">My Profile</a>
-    </li>
-    <li class="sidebar-nav-item">
-      <a class="js-scroll-trigger" href="#page-top">Home</a>
-    </li>
-    <li class="sidebar-nav-item">
-      <a class="js-scroll-trigger" href="#about">About</a>
-    </li>
-    <li class="sidebar-nav-item">
-      <a class="js-scroll-trigger" href="#callout">Experience</a>
-    </li>
-    <li class="sidebar-nav-item">
-      <a class="js-scroll-trigger" href="#portfolio">projects</a>
-    </li>
-    <li class="sidebar-nav-item">
-      <a class="js-scroll-trigger" href="#site">Contact</a>
-    </li>
-  </ul>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header navbar-fixed-top ">
+      <a class="navbar-brand" href="#page-top">Vivek Nair</a>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#page-top">Home</a></li>
+    </ul>
+    <ul class="nav navbar-nav"><li><a href="#about">About Me</a></li></ul>
+    <ul class="nav navbar-nav"><li><a href="#callout">Experience</a></li></ul>
+    <ul class="nav navbar-nav"><li><a href="#portfolio">Projects</a></li></ul>
+    <ul class="nav navbar-nav"><li><a href="#site">Social Media</a></li></ul>
+
+  </div>
 </nav>
+
 
 <!-- Header -->
 <header class="masthead d-flex">
   <div class="container text-center my-auto">
-    <span style="z-index: -1; position:relative;">
-    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../../../assets/img/profile.jpg" alt="">
-    </span>
-
+    <!--<div class="viv-container ">-->
+      <img class="img-circle viv-container borderimg1"  src="../../../assets/img/profile.jpeg" />
+    <!--</div>-->
+    <!--<br><br>-->
     <h1 class="mb-1">Vivek Nair</h1>
     <h3 class="mb-5">
       <em>A problem solver and theater enthusiast!</em>
     </h3>
     <h4>Apt 1, 1 Folsom Ave, Roxbury crossing, MA 02120 · (857) 399-5894 · nair.viv@husky.neu.edu</h4>
-    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+    <!--<a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>-->
   </div>
   <div class="overlay"></div>
 </header>
@@ -83,7 +75,7 @@
 </section>
 
 <!-- Experience -->
-<section class="callout">
+<section class="callout" id="callout">
   <div class="container text-left">
     <h2 class="mx-auto mb-5">Experience</h2>
     <p class="fa-2x">
